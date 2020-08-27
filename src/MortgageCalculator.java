@@ -17,6 +17,7 @@ import java.text.NumberFormat;
 
 public class MortgageCalculator{
     public static void main(String[] args){
+        try{
         NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
         final byte MOTHS_IN_YEAR = 100;
         final byte PERSENT = 12;
@@ -62,5 +63,11 @@ public class MortgageCalculator{
             // double mortgage = principal * ((annualInterestRate /= 100) / 12) * (Math.pow(1 + annualInterestRate, periodYears) / (Math.pow(annualInterestRate + 1, periodYears) - 1));
             double mortgage = principal * (monthlyIntrests * Math.pow(1 + monthlyIntrests, amoutOfPayments)) / (Math.pow(1 + monthlyIntrests, amoutOfPayments));
             System.out.println("Mortgage: "+ formatter.format(mortgage));
+    } catch (java.util.InputMismatchException e){
+        System.out.println("User must enter a number");
+    } catch (Exception e)
+    {
+        System.out.println("Something is wrong");
+    }
     }
 }
